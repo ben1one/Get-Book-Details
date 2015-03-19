@@ -3,10 +3,11 @@
 // include the class
 require_once 'amazon.php';
 $isbn=$_POST['isbn'];
+$isbn = str_replace("-", "", $isbn);
 $Amazon=new Amazon();
 
 $parameters=array(
-	"region"=>"com",
+	"region"=>"com",  //com, cn, jp, de
 	"AssociateTag"=>'affiliateTag',
 	"Condition"=>"All",
 	"Operation"=>"ItemSearch",
