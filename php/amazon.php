@@ -26,6 +26,9 @@ class Amazon
 		// url basics
 		$signature['method']='GET';
 		$signature['host']='ecs.amazonaws.'.$param['region'];
+		if($param['region']=="cn"){
+			$signature['host']= "webservices.amazon.cn";
+		}
 		$signature['uri']='/onca/xml';
 
 	    // necessary parameters
@@ -33,6 +36,9 @@ class Amazon
 	    $param['AWSAccessKeyId'] = $this->publicKey;
 	    $param['Timestamp'] = gmdate("Y-m-d\TH:i:s\Z");
 	    $param['Version'] = '2009-10-01';
+	    if($param['region']=="cn"){
+	    	$param['Version'] = '2011-08-01';
+	    }		
 		ksort($param);
 	    foreach ($param as $key=>$value)
 	    {
